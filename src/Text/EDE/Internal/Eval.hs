@@ -29,8 +29,7 @@ import           Data.Scientific                   (isFloating)
 import           Data.Semigroup
 #endif
 import qualified Data.Text                         as Text
-import qualified Data.Text.Buildable               as Build
-import           Data.Text.Lazy.Builder            (Builder)
+import           Data.Text.Lazy.Builder            (Builder, fromText)
 import           Data.Text.Lazy.Builder.Scientific
 import           Data.Text.Manipulate              (toOrdinal)
 import           Text.EDE.Internal.Filters         (stdlib)
@@ -206,7 +205,7 @@ binding d x y =
 
 build :: Delta -> Value -> Context Builder
 build _ Null         = return mempty
-build _ (String t)   = return (Build.build t)
+build _ (String t)   = return (fromText t)
 build _ (Bool True)  = return "true"
 build _ (Bool False) = return "false"
 build _ (Number n)
